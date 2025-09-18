@@ -32,6 +32,11 @@ html,body{margin:0;padding:0;width:100%;height:100%;background:#0f172a;overflow:
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 30;
   overflow: hidden;
+  display: none; /* Aggiunto */
+}
+
+.tool-dropdown:not(.hidden) {
+  display: block; /* Aggiunto */
 }
 
 .tool-dropdown div {
@@ -90,14 +95,14 @@ html,body{margin:0;padding:0;width:100%;height:100%;background:#0f172a;overflow:
   <h2 class="text-4xl font-bold text-cyan-400 mb-6">Dashboard OSINT</h2>
   <div class="flex gap-2 justify-center items-center w-full md:w-2/3">
     <input type="text" id="search-input" placeholder="Inserisci ricerca..." class="flex-1 p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none" />
-    <div class="relative">
+    <div class="relative"> <!-- Aggiunta la classe relative qui -->
       <button id="tool-btn" class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition flex items-center justify-between w-40">
         <span>Seleziona Tool</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      <div id="tool-dropdown" class="tool-dropdown hidden">
+      <div id="tool-dropdown" class="tool-dropdown absolute hidden"> <!-- Aggiunta la classe absolute -->
         <div onclick="selectTool('Email OSINT')">Email OSINT</div>
         <div onclick="selectTool('Phone OSINT')">Phone OSINT</div>
         <div onclick="selectTool('Social Lookup')">Social Lookup</div>
@@ -120,7 +125,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;background:#0f172a;overflow:
   <p id="apikey-display" class="mb-4 text-yellow-400"></p>
   
   <!-- Bottoni API solo per piani API e Unlimited -->
-  <div id="api-buttons" class="mt-4 flex gap-4">
+  <div id="api-buttons" class="hidden mt-4 flex gap-4">
     <button onclick="showApiDocs()" class="px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-400 transition">API Docs</button>
     <button onclick="generateApiKey()" class="px-6 py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-400 transition">Rigenera API Key</button>
   </div>
